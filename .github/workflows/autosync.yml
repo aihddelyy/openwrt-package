@@ -32,6 +32,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
           git fetch origin
           git add .
+          git commit
           status=$(git status -sb)
           if git diff --quiet; then
               echo "插件无更新，无需提交。"
