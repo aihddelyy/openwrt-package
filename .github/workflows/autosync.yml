@@ -38,7 +38,7 @@ jobs:
           #    echo "插件无更新，无需提交。"
           #else
           Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
-          git commit -a -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} Sync $(TZ='Asia/Shanghai' date 'TZ="Asia/Shanghai"' +%Y-%m-%d" "%H:%M:%S)"
+          git commit -a -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} Sync $(TZ='Asia/Shanghai' date +%Y-%m-%d" "%H:%M:%S)"
           date
           #for pkg in $(git diff-tree --no-commit-id --name-only HEAD | grep -v "naiveproxy"); do
           #  if [ "$(grep "PKG_RELEASE" $pkg/Makefile)" ]; then
