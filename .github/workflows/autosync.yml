@@ -30,13 +30,12 @@ jobs:
           
           # 添加认证信息到远程URL
           git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
-          
+          git add .
           status=$(git status -sb)
           if git diff --quiet; then
               echo "插件无更新，无需提交。"
           else
           Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
-          git add .
           git commit -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} Sync $(date -d 'TZ="Asia/Shanghai"' +%Y-%m-%d" "%H:%M:%S)"
           #for pkg in $(git diff-tree --no-commit-id --name-only HEAD | grep -v "naiveproxy"); do
           #  if [ "$(grep "PKG_RELEASE" $pkg/Makefile)" ]; then
