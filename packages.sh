@@ -46,7 +46,7 @@ git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 && mv -n open
 git clone --depth 1 https://github.com/kenzok8/wall && mv -n wall/adguardhome wall/filebrowser ./ ; rm -rf wall
 # git clone --depth 1 https://github.com/xiangfeidexiaohuo/extra-ipk && mv -n extra-ipk/patch/wall-luci/luci-app-vssr ./ ; rm -rf extra-ipk
 # git clone --depth 1 https://github.com/sbwml/luci-app-alist openwrt-alist && mv -n openwrt-alist/*alist ./ ; rm -rf openwrt-alist
-git clone --depth 1 https://github.com/lisaac/luci-app-dockerman && mv -n luci-app-dockerman/applications/luci-app-dockerman ./ ; rm -rf luci-app-dockerman
+git clone --depth 1 https://github.com/lisaac/luci-app-dockerman dockerman && mv -n dockerman/applications/luci-app-dockerman ./ ; rm -rf dockerman
 git clone --depth 1 https://github.com/sbwml/packages_lang_golang && mv -n packages_lang_golang/golang ./ ; rm -rf packages_lang_golang
 git clone --depth 1 https://github.com/linkease/istore && mv -n istore/luci/luci-app-store ./ ; rm -rf istore
 # git clone --depth 1 https://github.com/sirpdboy/luci-app-lucky sirpdboy-lucik && mv -n sirpdboy-lucik/*lucky ./ ; rm -rf sirpdboy-lucik
