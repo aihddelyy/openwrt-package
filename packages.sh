@@ -26,9 +26,9 @@ git clone --depth 1 https://github.com/kenzok78/luci-app-adguardhome
 git clone --depth 1 https://github.com/sirpdboy/luci-app-partexp
 git clone --depth 1 https://github.com/sbwml/v2ray-geodata
 git clone --depth 1 https://github.com/muink/luci-app-homeproxy
-# git clone --depth 1 https://github.com/asvow/luci-app-tailscale
-# git clone --depth 1 https://github.com/tty228/luci-app-wechatpush
-# git clone --depth 1 https://github.com/sirpdboy/luci-app-poweroffdevice
+git clone --depth 1 https://github.com/asvow/luci-app-tailscale
+git clone --depth 1 https://github.com/tty228/luci-app-wechatpush
+git clone --depth 1 https://github.com/sirpdboy/luci-app-poweroffdevice
 git clone --depth 1 https://github.com/sirpdboy/luci-app-netdata
 # git clone --depth 1 https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git
 # git clone --depth 1 https://github.com/BROBIRD/openwrt-r8168
