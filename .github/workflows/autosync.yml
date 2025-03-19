@@ -30,6 +30,7 @@ jobs:
           
           # 添加认证信息到远程URL
           git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
+          git fetch origin
           git add .
           status=$(git status -sb)
           if git diff --quiet; then
