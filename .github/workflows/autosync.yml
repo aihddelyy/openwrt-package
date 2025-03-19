@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - '.github/workflows/autosync.yml'
-      - '.github/packages.sh'
+      - 'packages.sh'
   workflow_dispatch:
   schedule:
     - cron:  '0 0 * * *'
