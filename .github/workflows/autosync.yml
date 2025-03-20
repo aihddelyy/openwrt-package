@@ -31,15 +31,17 @@ jobs:
           # 添加认证信息到远程URL
           git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
           git fetch origin
-          git add .
-          #git commit -a -m "Update"
-          #status=$(git status -sb)
-          #if git diff --quiet; then
-          #    echo "插件无更新，无需提交。"
-          #else
-          Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
-          git commit -a -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} Sync $(TZ='Asia/Shanghai' date +%Y-%m-%d" "%H:%M:%S)"
-          date
+          git add .          
+          status=$(git status --porcelain)
+          if [ -n "$status" ]; then
+            echo "有文件被修改、新增或删除"
+            Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
+            git commit -a -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} Sync $(TZ='Asia/Shanghai' date +%Y-%m-%d" "%H:%M:%S)"
+            git push origin HEAD:main -f
+          else
+            echo "没有文件变动"
+          fi
+          
           #for pkg in $(git diff-tree --no-commit-id --name-only HEAD | grep -v "naiveproxy"); do
           #  if [ "$(grep "PKG_RELEASE" $pkg/Makefile)" ]; then
           #    sed -i "s/PKG_RELEASE:=.*/PKG_RELEASE:=$(git rev-list --count main $pkg)/" $pkg/Makefile || true
@@ -47,8 +49,7 @@ jobs:
           #done
           #git reset --soft HEAD^
           #git add .
-          #git commit -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} Sync $(date -d 'TZ="Asia/Shanghai"' +%Y-%m-%d" "%H:%M:%S)"
-          git push origin HEAD:main -f
+          #git commit -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} Sync $(date -d 'TZ="Asia/Shanghai"' +%Y-%m-%d" "%H:%M:%S)"          
           #fi
 
       - name: Delete workflow runs
