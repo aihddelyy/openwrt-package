@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - '.github/workflows/autosync.yml'
-      - 'packages.sh'
+      - '.github/diy/packages.sh'
   workflow_dispatch:
   schedule:
     - cron:  '0 16 * * *'
@@ -20,8 +20,8 @@ jobs:
 
       - name: Resync Code
         run: |
-          chmod +x packages.sh
-          ./packages.sh
+          chmod +x .github/diy/packages.sh
+          ./.github/diy/packages.sh
       
       - name: Push changes
         run: |
