@@ -36,7 +36,6 @@ git clone --depth 1 https://github.com/UnblockNeteaseMusic/luci-app-unblocknetea
 git clone --depth 1 https://github.com/sbwml/luci-app-filemanager
 # git clone --depth 1 https://github.com/schen39/luci-app-serverchan
 
-
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages passwall-packages
 # git clone --depth=1 -b main https://github.com/fw876/helloworld && mvdir helloworld
 # git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go && mvdir luci-app-ddns-go
@@ -49,6 +48,8 @@ git clone --depth 1 https://github.com/kenzok8/wall && mv -n wall/adguardhome wa
 git clone --depth 1 https://github.com/lisaac/luci-app-dockerman dockerman && mv -n dockerman/applications/luci-app-dockerman ./ ; rm -rf dockerman
 git clone --depth 1 https://github.com/sbwml/packages_lang_golang && mv -n packages_lang_golang/golang ./ ; rm -rf packages_lang_golang
 git clone --depth 1 https://github.com/linkease/istore luci-app-istore
+git clone --depth 1 https://github.com/linkease/nas-packages-luci nas-packages-luci && mv -n nas-packages-luci/luci/luci-app-quickstart ./ ; rm -rf nas-packages-luci
+git clone --depth 1 https://github.com/linkease/nas-packages nas-packages && mv -n nas-packages/network/services/quickstart ./ ; rm -rf nas-packages
 git clone --depth 1 https://github.com/sirpdboy/luci-app-lucky sirpdboy-lucik && mv -n sirpdboy-lucik/*lucky ./ ; rm -rf sirpdboy-lucik
 git clone --depth 1 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
 # git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent sirpdboy-qbittorrent && mv -n sirpdboy-qbittorrent/* ./ ; rm -rf sirpdboy-qbittorrent
@@ -60,7 +61,6 @@ git clone --depth 1 https://github.com/immortalwrt/luci && mv -n luci/applicatio
 git clone --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki OpenWrt-nikki && mv -n OpenWrt-nikki/*nikki ./ ; rm -rf OpenWrt-nikki
 # git clone --depth 1 https://github.com/muink/openwrt-fchomo openwrt-fchomo && mv -n openwrt-fchomo/*homo ./ ; rm -rf openwrt-fchomo
 git clone --depth 1 https://github.com/kiddin9/kwrt-packages kwrt-packages && mv -n kwrt-packages/*adbyby* ./ ; rm -rf kwrt-packages
-
 
 git clone --depth 1 -b dev https://github.com/vernesong/OpenClash && mv -n OpenClash/luci-app-openclash ./ ; rm -rf OpenClash
 
