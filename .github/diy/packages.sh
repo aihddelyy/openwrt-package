@@ -22,7 +22,7 @@ rm -rf $1
 
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config
-git clone --depth 1 https://github.com/kenzok78/luci-app-adguardhome
+git clone --depth 1 https://github.com/kiddin9/luci-app-adguardhome
 git clone --depth 1 https://github.com/sirpdboy/luci-app-partexp
 # git clone --depth 1 https://github.com/sbwml/v2ray-geodata
 git clone --depth 1 https://github.com/muink/luci-app-homeproxy
@@ -63,6 +63,7 @@ git clone --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki OpenWrt-nikk
 git clone --depth 1 https://github.com/kiddin9/kwrt-packages kwrt-packages && mv -n kwrt-packages/*adbyby* ./ ; rm -rf kwrt-packages
 
 git clone --depth 1 -b dev https://github.com/vernesong/OpenClash && mv -n OpenClash/luci-app-openclash ./ ; rm -rf OpenClash
+git_sparse_clone openwrt-24.10 "https://github.com/immortalwrt/luci" applications/luci-app-argon-config
 
 rm -rf ./*/.git & rm -rf ./*/.gitattributes
 rm -rf ./*/.svn & rm -rf ./*/.github & rm -rf ./*/.gitignore
