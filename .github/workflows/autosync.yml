@@ -39,7 +39,7 @@ jobs:
             git commit -a -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} 源码同步于 $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
             git push origin HEAD:main -f
           else
-            echo "没有文件变动"
+            echo "没有文件变动，无需提交"
           fi
           
           #for pkg in $(git diff-tree --no-commit-id --name-only HEAD | grep -v "naiveproxy"); do
