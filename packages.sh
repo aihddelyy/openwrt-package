@@ -33,7 +33,7 @@ git clone --depth 1 https://github.com/sirpdboy/luci-app-netdata
 git clone --depth 1 https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git
 # git clone --depth 1 https://github.com/BROBIRD/openwrt-r8168
 # git clone --depth 1 https://github.com/sbwml/package_kernel_r8125
-git clone --depth 1 https://github.com/sbwml/luci-app-filemanager
+# git clone --depth 1 https://github.com/sbwml/luci-app-filemanager
 # git clone --depth 1 https://github.com/schen39/luci-app-serverchan
 
 
