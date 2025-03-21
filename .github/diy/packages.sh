@@ -4,6 +4,7 @@ shopt -s extglob
 set +e
 git rm -r --cache * >/dev/null 2>&1 &
 rm -rf `find ./* -maxdepth 0 -type d ! -name ".github/diy"` >/dev/null 2>&1
+mkdir -p relevance
 
 # 定义稀疏克隆函数
 function git_sparse_clone() {
