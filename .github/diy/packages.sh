@@ -1,21 +1,23 @@
 #!/bin/bash
 
 shopt -s extglob
-rm -rfv !(LICENSE|README.md|packages.sh)
-shopt -u extglob
+set +e
+git rm -r --cache * >/dev/null 2>&1 &
+rm -rf `find ./* -maxdepth 0 -type d ! -name ".github/diy"` >/dev/null 2>&1
 
+# 定义稀疏克隆函数
 function git_sparse_clone() {
 trap 'rm -rf "$tmpdir"' EXIT
 branch="$1" curl="$2" && shift 2
 rootdir="$PWD"
 tmpdir="$(mktemp -d)" || exit 1
 if [ ${#branch} -lt 10 ]; then
-git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
-cd "$tmpdir"
+    git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
+    cd "$tmpdir"
 else
-git clone --filter=blob:none --sparse "$curl" "$tmpdir"
-cd "$tmpdir"
-git checkout $branch
+    git clone --filter=blob:none --sparse "$curl" "$tmpdir"
+    cd "$tmpdir"
+    git checkout $branch
 fi
 if [ "$?" != 0 ]; then
     echo "error on $curl"
@@ -27,9 +29,20 @@ mv -n $@ $rootdir/ || true
 cd $rootdir
 }
 
+# 定义移动目录函数
 function mvdir() {
 mv -n `find $1/* -maxdepth 0 -type d` ./
 rm -rf $1
+}
+
+# 定义克隆函数
+function git_clone() {
+git clone --depth 1 $1 $2
+if [ "$?" != 0 ]; then
+    echo "error on $1"
+    pid="$( ps -q $$ )"
+    kill $pid
+fi
 }
 
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon
@@ -49,7 +62,7 @@ git clone --depth 1 https://github.com/sbwml/luci-app-filemanager
 # git clone --depth 1 https://github.com/schen39/luci-app-serverchan
 
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages passwall-packages
-# git clone --depth=1 -b main https://github.com/fw876/helloworld && mvdir helloworld
+# git clone --depth 1 -b main https://github.com/fw876/helloworld && mvdir helloworld
 # git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go && mvdir luci-app-ddns-go
 
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall && mv -n openwrt-passwall/luci-app-passwall ./ ; rm -rf openwrt-passwall
@@ -64,7 +77,7 @@ git clone --depth 1 https://github.com/linkease/nas-packages-luci nas-packages-l
 git clone --depth 1 https://github.com/linkease/nas-packages nas-packages && mv -n nas-packages/network/services/quickstart ./ ; rm -rf nas-packages
 git clone --depth 1 https://github.com/sirpdboy/luci-app-lucky sirpdboy-lucik && mv -n sirpdboy-lucik/*lucky ./ ; rm -rf sirpdboy-lucik
 git clone --depth 1 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
-# git clone --depth=1 https://github.com/sbwml/luci-app-qbittorrent sirpdboy-qbittorrent && mv -n sirpdboy-qbittorrent/* ./ ; rm -rf sirpdboy-qbittorrent
+# git clone --depth 1 https://github.com/sbwml/luci-app-qbittorrent sirpdboy-qbittorrent && mv -n sirpdboy-qbittorrent/* ./ ; rm -rf sirpdboy-qbittorrent
 # git clone --depth 1 https://github.com/messense/aliyundrive-webdav aliyundrive && mv -n aliyundrive/openwrt/* ./ ; rm -rf aliyundrive
 # git clone --depth 1 https://github.com/fw876/helloworld && mv -n helloworld/luci-app-ssr-plus ./ ; rm -rf helloworld
 # git clone --depth 1 https://github.com/kiddin9/kwrt-packages && mv -n kwrt-packages/luci-app-bypass kwrt-packages/luci-app-fileassistant ./ ; rm -rf kwrt-packages
@@ -77,5 +90,8 @@ git clone --depth 1 https://github.com/kiddin9/kwrt-packages kwrt-packages && mv
 git clone --depth 1 -b dev https://github.com/vernesong/OpenClash && mv -n OpenClash/luci-app-openclash ./ ; rm -rf OpenClash
 git_sparse_clone openwrt-24.10 "https://github.com/immortalwrt/luci" applications/luci-app-argon-config
 
+# 清理目录
+mkdir -p relevance
+mv -f `find ./* -maxdepth 0 -type d ! -name "luci-app*"` ./relevance/ >/dev/null 2>&1
 rm -rf ./*/.git & rm -rf ./*/.gitattributes
 rm -rf ./*/.svn & rm -rf ./*/.github & rm -rf ./*/.gitignore

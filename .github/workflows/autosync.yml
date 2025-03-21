@@ -36,7 +36,7 @@ jobs:
           if [ -n "$status" ]; then
             echo "有文件被修改、新增或删除"
             Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
-            git commit -a -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} 源码同步于 $(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
+            git commit -a -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} 同步源码于$(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
             git push origin HEAD:main -f
           else
             echo "没有文件变动，无需提交"
