@@ -61,13 +61,13 @@ git clone --depth 1 https://github.com/UnblockNeteaseMusic/luci-app-unblocknetea
 git clone --depth 1 https://github.com/sbwml/luci-app-filemanager
 # git clone --depth 1 https://github.com/schen39/luci-app-serverchan
 
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages ./relevance/passwall-packages
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages passwall-packages && mv -n passwall-packages ./relevance/ ; rm -rf passwall-packages
 # git clone --depth 1 -b main https://github.com/fw876/helloworld && mvdir helloworld
 # git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go && mvdir luci-app-ddns-go
 
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall && mv -n openwrt-passwall/luci-app-passwall ./ ; rm -rf openwrt-passwall
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2 && mv -n openwrt-passwall2/luci-app-passwall2 ./ ; rm -rf openwrt-passwall2
-git clone --depth 1 https://github.com/kenzok8/wall && mv -n wall/adguardhome wall/filebrowser ./ ; rm -rf wall
+git clone --depth 1 https://github.com/kenzok8/wall && mv -n wall/adguardhome wall/filebrowser ./relevance/ ; rm -rf wall
 # git clone --depth 1 https://github.com/xiangfeidexiaohuo/extra-ipk && mv -n extra-ipk/patch/wall-luci/luci-app-vssr ./ ; rm -rf extra-ipk
 # git clone --depth 1 https://github.com/sbwml/luci-app-alist openwrt-alist && mv -n openwrt-alist/*alist ./ ; rm -rf openwrt-alist
 git clone --depth 1 https://github.com/lisaac/luci-app-dockerman dockerman && mv -n dockerman/applications/luci-app-dockerman ./ ; rm -rf dockerman
@@ -88,7 +88,7 @@ git clone --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki OpenWrt-nikk
 git clone --depth 1 https://github.com/kiddin9/kwrt-packages kwrt-packages && mv -n kwrt-packages/*adbyby* ./ && mv -n adbyby ./relevance/ ; rm -rf kwrt-packages
 
 git clone --depth 1 -b dev https://github.com/vernesong/OpenClash && mv -n OpenClash/luci-app-openclash ./ ; rm -rf OpenClash
-git_sparse_clone openwrt-24.10 "https://github.com/immortalwrt/luci" applications/luci-app-argon-config
+# git_sparse_clone openwrt-24.10 "https://github.com/immortalwrt/luci" applications/luci-app-argon-config
 
 # 清理目录
 # mkdir -p relevance
