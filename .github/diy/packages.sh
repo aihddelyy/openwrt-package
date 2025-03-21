@@ -62,7 +62,7 @@ git clone --depth 1 https://github.com/UnblockNeteaseMusic/luci-app-unblocknetea
 git clone --depth 1 https://github.com/sbwml/luci-app-filemanager
 # git clone --depth 1 https://github.com/schen39/luci-app-serverchan
 
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages && mkdir /relevance/passwall-packages && mv -n openwrt-passwall-packages/* ./relevance/passwall-packages/ ; rm -rf openwrt-passwall-packages
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages && mkdir ./relevance/passwall-packages && mv -n openwrt-passwall-packages/* ./relevance/passwall-packages/ ; rm -rf openwrt-passwall-packages
 # git clone --depth 1 -b main https://github.com/fw876/helloworld && mvdir helloworld
 # git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go && mvdir luci-app-ddns-go
 
