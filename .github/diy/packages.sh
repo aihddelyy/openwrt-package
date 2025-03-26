@@ -49,7 +49,7 @@ fi
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config
 git clone --depth 1 https://github.com/kiddin9/luci-app-adguardhome
-git clone --depth 1 https://github.com/sirpdboy/luci-app-partexp && mvdir luci-app-partexp
+git clone --depth 1 https://github.com/sirpdboy/luci-app-partexp  partexp && mvdir partexp
 # git clone --depth 1 https://github.com/sbwml/v2ray-geodata
 git clone --depth 1 https://github.com/muink/luci-app-homeproxy
 # git clone --depth 1 https://github.com/asvow/luci-app-tailscale
