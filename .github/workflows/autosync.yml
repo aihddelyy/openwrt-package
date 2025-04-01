@@ -6,7 +6,7 @@ on:
       - '.github/diy/packages.sh'
   workflow_dispatch:
   schedule:
-    - cron:  '0 16 * * *'
+    - cron: '0 16 * * *'
         
 jobs:
   autosync:
