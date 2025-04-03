@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Git Repository
         uses: actions/checkout@main
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           persist-credentials: true
 
       - name: Resync Code
@@ -28,15 +28,12 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           
-          # 添加认证信息到远程URL
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
-          git fetch origin
-          git add .          
+          git add .
           status=$(git status --porcelain)
           if [ -n "$status" ]; then
             echo "有文件被修改、新增或删除"
             Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
-            git commit -a -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} 同步源码于$(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
+            git commit -m "${Emoji[$[$RANDOM % ${#Emoji[@]}]]} 同步源码于$(TZ='Asia/Shanghai' date +"%Y年%m月%d日-%H点%M分")"
             git push origin HEAD:main -f
           else
             echo "没有文件变动，无需提交"
@@ -57,4 +54,4 @@ jobs:
         with:
           retain_days: 0
           keep_minimum_runs: 7
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
