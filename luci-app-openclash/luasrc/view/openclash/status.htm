@@ -2265,9 +2265,6 @@
 
             this.closeConnection(type);
 
-            // if not connected, start log display because core maybe restart
-            LogManager.startLogDisplay();
-
             if (!this.isSupported()) {
                 this.enableFallbackMode();
                 return null;
@@ -2406,6 +2403,9 @@
         },
 
         handleClose: function(type, event) {
+            // if not connected, start log display because core maybe restart
+            LogManager.startLogDisplay();
+
             var connection = this.connections[type];
             if (connection) {
                 connection.state = this.connectionStates.DISCONNECTED;
@@ -3434,12 +3434,13 @@
                     var textarea = document.getElementById('subscription-url-textarea');
                     if (textarea) {
                         var urls = '';
-                        if (status.url) {
-                            if (typeof status.url === 'string') {
-                                urls = status.url;
-                            } else if (Array.isArray(status.url)) {
-                                urls = status.url.join('\n');
+                        if (status.type && status.type === "multiple") {
+                            for (var data in status.providers) {
+                                urls += status.providers[data].url + '#name=' + status.providers[data].name + '\n';
                             }
+                        }
+                        if (status.type && status.type === "single") {
+                            urls = status.url;
                         }
                         textarea.value = urls;
                     }
@@ -3470,9 +3471,9 @@
 
             StateManager.clearCache('<%=luci.dispatcher.build_url("admin", "services", "openclash", "startlog")%>');
 
-            if (DOMCache.oclog) {
+            if (DOMCache.oclog && initialMessage) {
                 DOMCache.oclog.style.display = 'inline-flex';
-                DOMCache.oclog.innerHTML = '<b style="color:var(--tip-color)">' + (initialMessage || '<%:Processing...%>') + '</b>';
+                DOMCache.oclog.innerHTML = '<b style="color:var(--tip-color)">' + initialMessage + '</b>';
             }
 
             this.isPolling = true;
@@ -3596,6 +3597,7 @@
             var color = this.getLogColor(cleanLog);
             var displayText = this.formatLogText(cleanLog);
 
+            DOMCache.oclog.style.display = 'inline-flex';
             DOMCache.oclog.innerHTML = '<b style="color:' + color + '">' + displayText + '</b>';
         },
 
