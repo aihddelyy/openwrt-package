@@ -15,7 +15,7 @@ local function oix_checkin()
 	local multiple = fs.uci_get_config("config", "oix_checkin_multiple") or 1
 	path = "/tmp/oix_checkin"
 	if token and enable == "1" then
-		checkin = string.format("curl -sL -H 'Content-Type: application/json' -d '{\"access_token\":\"%s\", \"multiple\":\"%s\"}' -X POST https://dler.cloud/api/v1/checkin -o %s", token, multiple, path)
+		checkin = string.format("curl -sL -H 'Content-Type: application/json' -H 'Authorization: Bearer %s' -d '{\"multiple\":\"%s\"}' -X POST https://oix-api.dler.io/api/v1/checkin -o %s", token, multiple, path)
 		if fs.readfile(path) == "" or not fs.readfile(path) then
 			luci.sys.exec(checkin)
 		else
@@ -34,12 +34,12 @@ local function oix_checkin()
 			info = json.parse(info)
 		end
 		if info and info.ret == 200 then
-			luci.sys.exec(string.format('echo "%s [info] oixCloud Checkin Successful, Result:【%s】" >> /tmp/openclash.log', os.date("%Y-%m-%d %H:%M:%S"), info.data.checkin))
+			luci.sys.exec(string.format('echo "%s [Info] oixCloud Checkin Successful, Result:【%s】" >> /tmp/openclash.log', os.date("%Y-%m-%d %H:%M:%S"), info.data.checkin))
 		else
 			if info and info.msg then
-				luci.sys.exec(string.format('echo "%s [info] oixCloud Checkin Failed, Result:【%s】" >> /tmp/openclash.log', os.date("%Y-%m-%d %H:%M:%S"), info.msg))
+				luci.sys.exec(string.format('echo "%s [Info] oixCloud Checkin Failed, Result:【%s】" >> /tmp/openclash.log', os.date("%Y-%m-%d %H:%M:%S"), info.msg))
 			else
-				luci.sys.exec(string.format('echo "%s [info] oixCloud Checkin Failed! Please Check And Try Again..." >> /tmp/openclash.log', os.date("%Y-%m-%d %H:%M:%S")))
+				luci.sys.exec(string.format('echo "%s [Info] oixCloud Checkin Failed! Please Check And Try Again..." >> /tmp/openclash.log', os.date("%Y-%m-%d %H:%M:%S")))
 			end
 		end
 	end
