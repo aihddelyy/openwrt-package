@@ -124,6 +124,7 @@ o:depends("en_mode", "fake-ip-mix")
 o:value("system", translate("System　"))
 o:value("gvisor", translate("gVisor"))
 o:value("mixed", translate("Mixed"))
+o:value("mips", translate("Mips"))
 o.default = "system"
 
 o = s:taboption("op_mode", ListValue, "proxy_mode", translate("Proxy Mode"))
@@ -523,7 +524,6 @@ o.description = translate("Select The China Domain Data Source Used by China IP 
 o:value("mrs", translate("MetaCubeX Rules cn.mrs (Default)"))
 o:value("geosite", translate("GeoSite Rules geosite:cn"))
 o.default = "mrs"
-o.rmempty = false
 o:depends("china_ip_route", "1")
 o:depends("china_ip_route", "2")
 o:depends("china_ip6_route", "1")
@@ -1407,6 +1407,7 @@ o:depends({ipv6_mode= "3", en_mode = "fake-ip"})
 o:value("system", translate("System　"))
 o:value("gvisor", translate("gVisor"))
 o:value("mixed", translate("Mixed"))
+o:value("mips", translate("Mips"))
 o.default = "system"
 
 o = s:taboption("ipv6", Flag, "enable_v6_udp_proxy", translate("Proxy UDP Traffics"))
